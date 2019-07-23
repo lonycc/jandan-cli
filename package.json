@@ -1,0 +1,65 @@
+{
+  "name": "jandan-cli",
+  "version": "0.0.1",
+  "description": "jandan cli client",
+  "main": "index.js",
+  "preferGlobal": true,
+  "scripts": {
+    "start": "webpack --progress --watch",
+    "ci": "webpack",
+    "lint": "eslint src bin"
+  },
+  "bin": {
+    "jandan": "dist/jandan.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "update": "https://raw.githubusercontent.com/lonycc/jandan-cli/master/package.json",
+    "url": "git+https://github.com/lonycc/jandan-cli.git"
+  },
+  "keywords": [
+    "jandan",
+    "jandan-cli"
+  ],
+  "author": "lony (lony@lony.cc)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lonycc/jandan-cli/issues"
+  },
+  "homepage": "https://github.com/lonycc/jandan-cli#readme",
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "cheerio": "^1.0.0-rc.2",
+    "cli-table3": "^0.5.0",
+    "commander": "^2.11.0",
+    "inquirer": "^3.3.0",
+    "ora": "^1.3.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "term-img": "^2.1.0",
+    "util.promisify": "^1.0.0",
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.0",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/prompt-cli": "^7.5.0",
+    "@commitlint/travis-cli": "^7.5.0",
+    "@types/commander": "^2.11.0",
+    "husky": "^1.3.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "eslint": "^4.9.0",
+    "eslint-plugin-node": "^5.2.1"
+  }
+}

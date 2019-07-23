@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+*.map
+node_modules
+.vscode
+*.log
+*.log.*
+bundle
+.temp
+dist
+jandan_cache
