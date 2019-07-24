@@ -77,7 +77,7 @@
 `jandan remove`
 
 
-**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)等列表**
+**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)/动物园(zoo)等列表**
 
 `jandan test <category> {page} {-d}`
 
