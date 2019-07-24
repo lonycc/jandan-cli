@@ -3,18 +3,24 @@ const renderer = require('../src/services/renderer')
 const ora = require('ora')
 const checkLog = new ora('check params...')
 
-// parse page
+// parse
 commander
+  .option('-h, --hot', 'hot posts, get hot list')
+  .option('-d, --download', 'download pics in the post')
   .parse(process.argv)
+
+const hot = commander.hot || false
+const download = commander.download || false
 
 // check id
 ;(async() => {
   checkLog.start();
   const category = commander.args[0] || 'pic'
-  const page = 1
-  if ( ['pic', 'ooxx'].indexOf(category) < 0 ) return checkLog.fail('category only support pic and ooxx')
+  const page = commander.args[1] || 1
+
+  if ( ['pic', 'ooxx', 'picture', 'week', 'recent', 'joke', 'comment'].indexOf(category) < 0 ) return checkLog.fail('category can be pic/ooxx/picture/week/rencent/joke/comment')
   checkLog.stop()
-  if ( commander.args.length > 1 ) page = commander.args[1]
-  await renderer.renderPosts(category, page || 1)
+
+  await renderer.renderPosts(category, page, hot, download)
 })()
 

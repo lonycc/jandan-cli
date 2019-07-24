@@ -47,7 +47,7 @@ const utils = {
   spawnSync: childProcess.spawnSync,
 }
 
-const checkAuthorization = body => {
+const checkAuthorization = (body) => {
   return !String(body).includes('<a href="/signin" class="top">登录</a>')
 }
 

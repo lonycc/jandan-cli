@@ -8,8 +8,10 @@ const fetchLog = new ora()
 // parse id
 commander
   .option('-s, --silence', 'silence mode, hidden all comments')
+  .option('-h, --hot', 'hot post, find the post in hot list')
   .parse(process.argv)
 const silence = commander.silence || false
+const hot = commander.hot || false
 
 const show = (p, c) => {
   fetchLog.clear()
@@ -52,10 +54,10 @@ const findPost = async (post) => {
 
   if ( !id ) return checkLog.fail('id is required')
 
-  if ( ['pic', 'ooxx', 'picture', 'week', 'recent', 'joke', 'comment'].indexOf(category) < 0 ) return checkLog.fail('category invalid')
+  if ( ['pic', 'ooxx', 'picture', 'week', 'recent', 'joke', 'comment', 'qa', 'zhoubian', 'treehole', 'pond'].indexOf(category) < 0 ) return checkLog.fail('category invalid')
 
-  const postsStorage = await storage.get(category)
-  if ( !postsStorage ) return checkLog('post not found')
+  const postsStorage = hot ? await storage.get(`hot_${category}`) : await storage.get(category)
+  if ( !postsStorage ) return checkLog.fail(`make sure you have run [jandan posts ${category}] before`)
 
   const post = postsStorage.find(post => post.comment_ID === id)
 

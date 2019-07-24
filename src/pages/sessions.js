@@ -36,7 +36,7 @@ module.exports = {
       return e
     }
   },
-  
+
   generateOnce: async() => {
     const res = await request({
       uri: apis.signin,
@@ -68,7 +68,7 @@ module.exports = {
     })
     return { cookie: cookieStr, result: result }
   },
-  
+
   download: async(img, cookie) => {
     return await request({
       uri: img,
@@ -81,7 +81,7 @@ module.exports = {
       }),
     })
   },
-  
+
   check: async(cookie) => {
     const res = await request({
       uri: apis.host,

@@ -1,7 +1,7 @@
 const Table = require('cli-table3')
 const ora = require('ora')
 const { storage, history } = require('../utils')
-const { index, posts } = require('../pages/posts')
+const { index, posts, getList, downloadImage } = require('../pages/posts')
 
 
 module.exports = {
@@ -41,15 +41,16 @@ module.exports = {
     }
   },
 
-  renderPosts: async(category = 'pic', page = 1) => {
+  renderPosts: async(category = 'pic', page = 1, hot = false, download = false, other = false) => {
     const fetchLog = new ora('fetching...').start()
     try {
-      const data = await posts(category, page)
+      const data = other ? await getList(category, page) : await posts(category, page, hot)
       if ( !data || data.status !== 'ok' ) {
         fetchLog.text = ''
         return fetchLog.fail('no content')
       }
-      storage.set(category, data.comments)
+      const key_ = hot ? `hot_${category}` : category;
+      storage.set(key_, data.comments)
       fetchLog.clear()
 
       console.log(`${category}, page: ${page}`)
@@ -57,8 +58,17 @@ module.exports = {
         console.log(`comment_ID: ${item.comment_ID} comment_post_ID: ${item.comment_post_ID} \n ${item.comment_author} ${item.comment_date} \n ${item.text_content} \n ${item.pics.join('\n')} \n oo[${item.vote_positive}] xx[${item.vote_negative}] 吐槽[${item.sub_comment_count}]\n`);
       })
 
-      history.add(category, `${page}`)
-      return fetchLog.succeed(`${category}, page: ${page}`)
+      history.add(key_, `${page}`)
+
+      if ( download ) {
+        console.log(`now download pics for ${category}, page ${page}`)
+
+        for (let i=0; i<data.comments.length; i++ ) {
+          data.comments[i].pics.map(await downloadImage)
+        }
+      }
+
+      return fetchLog.succeed(`${key_}, page: ${page}`)
     } catch (e) {
       fetchLog.clear()
       return fetchLog.fail('Err: ' + String(e))

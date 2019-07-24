@@ -8,13 +8,13 @@ const init = async() => {
 const storage = {
   set: async(key, value) => {
     await init()
-    const path = `./jandan_cache/${key}.txt`
+    const path = `./jandan_cache/${key}.json`
     if (await exists(path)) spawnSync('rm', [path])
     await writeFile(path, JSON.stringify(value), 'utf-8')
   },
 
   get: async(key) => {
-    const path = `./jandan_cache/${key}.txt`
+    const path = `./jandan_cache/${key}.json`
     if (!await exists(path)) return null
     let result = {}
     try {
@@ -37,6 +37,11 @@ const storage = {
     const path = `./jandan_cache/${name}`
     if (!await exists(path)) return null
     return await readFile(path, 'utf-8')
+  },
+
+  exists: async(name) => {
+    const path = `./jandan_cache/${name}`
+    return await exists(path)
   },
 }
 
