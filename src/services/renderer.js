@@ -3,7 +3,6 @@ const ora = require('ora')
 const { storage, history } = require('../utils')
 const { index, posts, getList, downloadImage } = require('../pages/posts')
 
-
 module.exports = {
   renderArticles: async(page = 1) => {
     const fetchLog = new ora('fetching...').start()

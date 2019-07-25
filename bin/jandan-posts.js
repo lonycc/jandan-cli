@@ -5,11 +5,11 @@ const checkLog = new ora('check params...')
 
 // parse
 commander
-  .option('-h, --hot', 'hot posts, get hot list')
+  .option('-t, --top', 'get top list')
   .option('-d, --download', 'download pics in the post')
   .parse(process.argv)
 
-const hot = commander.hot || false
+const hot = commander.top || false
 const download = commander.download || false
 
 // check id

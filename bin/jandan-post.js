@@ -8,10 +8,10 @@ const fetchLog = new ora()
 // parse id
 commander
   .option('-s, --silence', 'silence mode, hidden all comments')
-  .option('-h, --hot', 'hot post, find the post in hot list')
+  .option('-t, --top', 'top post, find the post in top list')
   .parse(process.argv)
 const silence = commander.silence || false
-const hot = commander.hot || false
+const hot = commander.top || false
 
 const show = (p, c) => {
   fetchLog.clear()
