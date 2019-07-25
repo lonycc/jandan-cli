@@ -13,13 +13,16 @@ const silence = commander.silence || false
 
 const show = (p) => {
   fetchLog.clear()
-  fetchLog.info(`article: ${p.post.id}`)
+  fetchLog.info(`article id: ${p.post.id}, date: ${p.post.date}`)
+  fetchLog.info(`url: ${p.post.url}`)
+  fetchLog.info(`author: ${p.post.author.name}, category: ${p.post.categories[0].description}\n`)
   console.log(chalk.black.bgWhite.bold(` -${p.post.title}- \n`))
+  console.log(chalk.green(p.post.excerpt) + '\n')
   console.log(`${p.post.content} \n`)
   if (!silence && p.post.comments && p.post.comments.length) {
     console.log('Comments:')
     p.post.comments.forEach((comment, index) => {
-      console.log(chalk.bold(`-----------\n[${index}] ${comment.name}: `), `${comment.content}\n`)
+      console.log(chalk.bold(`-----------\n[${index}] ${comment.name}: `), `${comment.content}\n [comment_ID] ${comment.id} [oo] ${comment.vote_positive} [xx] ${comment.vote_negative}\n`)
     })
   }
   history.add('article', `${p.post.id}||${p.post.title}`)

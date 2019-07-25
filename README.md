@@ -34,17 +34,17 @@
 
 **3. 获取指定板块的列表**
 
-`jandan posts <category> {page} {-h} {-d}`
+`jandan posts <category> {page} {-t} {-d}`
 
-> 当带上`-h`时, 获取的是热榜板块列表, `category`可选`recent(最近)/week(周榜)/picture(无聊图)/comment(优评)/joke(搞笑?)/ooxx(随手拍)`, 热榜不支持`page`参数
+> 当带上`-t`时, 获取的是热榜板块列表, `category`可选`recent(最近)/week(周榜)/picture(无聊图)/comment(优评)/joke(搞笑?)/ooxx(随手拍)`, 热榜不支持`page`参数
 
-> 当忽略`-h`时, `category`可选`duan(段子?)/pic(无聊图)/ooxx(随手拍)`, `page`参数可分页
+> 当忽略`-t`时, `category`可选`duan(段子?)/pic(无聊图)/ooxx(随手拍)`, `page`参数可分页
 
 > `-d`参数用于下载图片, 默认不下载图片
 
 **4. 获取指定post详情, `comment_ID`可在`命令3`的输出里获得**
 
-`jandan post <category> <comment_ID> {-h}`
+`jandan post <category> <comment_ID> {-t}`
 
 **5. 提交新闻评论，发布`无聊图(pic)`、`问答(qa)`、`树洞(treehole)`、`随手拍(ooxx)`、`动物园(zoo)`、`周边(zhoubian)`、`鱼塘(pond)`等**
 
@@ -77,7 +77,7 @@
 `jandan remove`
 
 
-**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)/动物园(zoo)等列表**
+**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)/动物园(zoo)/应用(app)等列表**
 
 `jandan test <category> {page} {-d}`
 
