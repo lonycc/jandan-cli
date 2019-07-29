@@ -22,6 +22,7 @@ commander
   .command('remove', 'uninstall jandan-cli')
   .command('comment [category]', 'post comment')
   .command('tucao', 'post tucao')
+  .command('fuli [id]', 'fetch imgs from fuliba')
   .parse(process.argv)
 
 

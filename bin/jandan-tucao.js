@@ -8,7 +8,7 @@ const plog = new ora('post comment...')
 
 // parse search name
 commander
-  .usage('[options] <file ...>')
+  .usage('[-e|a|c|m] <...>')
   .option('-e, --email [email]', 'email', String, 'tucao_test@test.dev')
   .option('-a, --author [author]', 'nickname', String, 'tucao_test')
   .option('-c, --content <content>', 'tucao content', String, 'hardcore')

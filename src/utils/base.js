@@ -5,6 +5,7 @@ const request = require('request-promise-native')
 const api = 'http://i.jandan.net/?oxwlxojflwblxbsapi='
 const host = 'http://i.jandan.net'
 const moyu = 'http://api.moyu.today'
+const fuliba = 'https://fulibus.net'
 
 const makeHeader = async(headers = {}) => {
   return Object.assign({}, {
@@ -35,6 +36,7 @@ const apis = {
   tucao: 'http://i.jandan.net/jandan-tucao.php',
   comment: 'http://i.jandan.net/jandan-comment.php',
   host: host,
+  fuliba: fuliba,
 }
 
 const utils = {

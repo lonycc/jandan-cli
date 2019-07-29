@@ -9,7 +9,7 @@ const plog = new ora('post comment...')
 
 // parse search name
 commander
-  .usage('[options] <file ...>')
+  .usage('[-e|a|c|p] <...>')
   .option('-e, --email [email]', 'email', String, 'comment_test@test.dev')
   .option('-a, --author [author]', 'nickname', String, 'comment_test')
   .option('-c, --comment <comment>', 'comment content', String, 'hardcore')
@@ -34,9 +34,9 @@ commander
 
   const rs = await comment.comment(data, cookie)
   if ( /^\d+$/.test(rs) )
-    console.log(chalk.green(`\n评论成功, comment_id=${rs}`))
+    console.log(chalk.green(`\n发布成功, comment_id=${rs}`))
   else
-    console.log(chalk.red(`\n评论失败, ${rs}`))
+    console.log(chalk.red(`\n发布失败, ${rs}`))
 
   plog.stop()
 })()
