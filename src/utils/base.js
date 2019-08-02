@@ -28,8 +28,8 @@ const makePromisify = () => {
 const noErrorPromisify = makePromisify()
 
 const apis = {
-  index: `${api}/get_recent_posts&page=`,
-  article: `${api}/get_post&id=`,
+  index: `${api}get_recent_posts&page=`,
+  article: `${api}get_post&id=`,
   posts: `${api}`,
   comments: `${host}/tucao/`,
   hot: `${moyu}/jandan/hot?category=`,
