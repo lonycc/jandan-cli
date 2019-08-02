@@ -96,13 +96,13 @@ module.exports = {
 
   article: async(id = 95834 ) => {
     try {
-      const data = await request({
+      const rs = await request({
         uri: `${apis.article}${id}`,
         method: 'GET',
         headers: await makeHeader(),
         timeout: 10000,
       })
-      return JSON.parse(data)
+      return JSON.parse(rs)
     } catch (e) {
       throw e
     }
@@ -119,6 +119,38 @@ module.exports = {
         timeout: 10000,
       })
       return JSON.parse(data)
+    } catch (e) {
+      throw e
+    }
+  },
+
+  post: async(comment_id = 10086) => {
+    try {
+      const rs = await request({
+        uri: `${apis.post}/${comment_id}`,
+        method: 'GET',
+        headers: await makeHeader(),
+        timeout: 10000,
+      })
+      const $ = await cheerio.load(rs)
+      const content = $('div.entry')
+      const pics = []
+      content.find('a.view_img_link').each( (j, img) => {
+        pics.push($(img).attr('href').indexOf('http') === 0 ? $(img).attr('href') : 'http:' + $(img).attr('href'))
+      })
+      return {
+        comment_ID: comment_id,
+        comment_author: content.find('b').text(),
+        comment_date: 'unknow',
+        comment_date_gmt: 'unknow',
+        comment_content: content.find('p').html(),
+        user_id: 0,
+        vote_positive: 0,
+        vote_negative: 0,
+        sub_comment_count: 0,
+        text_content: content.find('p').text(),
+        pics: pics,
+      }
     } catch (e) {
       throw e
     }

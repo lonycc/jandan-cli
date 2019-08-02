@@ -8,11 +8,24 @@ const fetchLog = new ora()
 // parse id
 commander
   .option('-s, --silence', 'silence mode, hidden all comments')
+  .option('-f, --favour', 'add the article to your favourite')
   .parse(process.argv)
 const silence = commander.silence || false
+const favour = commander.favour || false
 
-const show = (p) => {
-  fetchLog.clear()
+
+const favourArticle = async (article, type = 'article') => {
+  fetchLog.start(`favour article ${article.post.id} ...\n`)
+  try {
+    await history.add(`${type}_${article.post.id}`, article.post.title, 'favour')
+    fetchLog.succeed('success')
+  } catch (e) {
+    fetchLog.fail(`err: ${String(e)}`)
+  }
+}
+
+const show = async (p) => {
+  //fetchLog.clear()
   fetchLog.info(`article id: ${p.post.id}, date: ${p.post.date}`)
   fetchLog.info(`url: ${p.post.url}`)
   fetchLog.info(`author: ${p.post.author.name}, category: ${p.post.categories[0].description}\n`)
@@ -27,14 +40,18 @@ const show = (p) => {
   }
   history.add('article', `${p.post.id}||${p.post.title}`)
 }
+
 const findArticle = async (id) => {
   checkLog.stop()
   fetchLog.start(`fetching... article.${id}`)
   try {
     const article = await posts.article(id)
-    fetchLog.clear()
-    if (!article || article.status !== 'ok' ) return fetchLog.fail(`article with id ${id} not found`)
-    show(article)
+    //fetchLog.clear()
+    if ( !article || article.status !== 'ok' ) return fetchLog.fail(`article with id ${id} not found`)
+
+    if ( favour )
+      await favourArticle(article)
+    await show(article)
   } catch (e) {
     fetchLog.fail(`err: ${String(e)}`)
   }

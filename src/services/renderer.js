@@ -1,5 +1,6 @@
 const Table = require('cli-table3')
 const ora = require('ora')
+const chalk = require('chalk')
 const { storage, history } = require('../utils')
 const { index, posts, getList, downloadImage } = require('../pages/posts')
 
@@ -54,7 +55,7 @@ module.exports = {
 
       console.log(`${category}, page: ${page}`)
       data.comments.forEach( (item) => {
-        console.log(`comment_ID: ${item.comment_ID} comment_post_ID: ${item.comment_post_ID} \n ${item.comment_author} ${item.comment_date} \n ${item.text_content} \n ${item.pics.join('\n')} \n oo[${item.vote_positive}] xx[${item.vote_negative}] 吐槽[${item.sub_comment_count}]\n`);
+        console.log(chalk.bold(`-----------\ncomment_ID: ${item.comment_ID} comment_post_ID: ${item.comment_post_ID} \n ${item.comment_author} ${item.comment_date} \n ${item.text_content} \n ${item.pics.join('\n')} \n oo[${item.vote_positive}] xx[${item.vote_negative}] 吐槽[${item.sub_comment_count}]\n`));
       })
 
       history.add(key_, `${page}`)
