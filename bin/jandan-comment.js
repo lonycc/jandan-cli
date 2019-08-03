@@ -10,8 +10,8 @@ const plog = new ora('post comment...')
 // parse search name
 commander
   .usage('[-e|a|c|p] <...>')
-  .option('-e, --email [email]', 'email', String, 'comment_test@test.dev')
-  .option('-a, --author [author]', 'nickname', String, 'comment_test')
+  .option('-e, --email [email]', 'email, set it once', String)
+  .option('-a, --author [author]', 'nickname, set it once', String)
   .option('-c, --comment <comment>', 'comment content', String, 'hardcore')
   .option('-p, --comment_post_ID [comment_post_ID]', 'the post id', String)
   .parse(process.argv)
@@ -24,9 +24,23 @@ commander
 
   const cpid = commander.comment_post_ID ? commander.comment_post_ID : await posts.getPostId(category)
 
+  const user = await storage.get('user') || {}
+  if ( commander.email )
+    user.email = commander.email
+  if ( commander.author )
+    user.author = commander.author
+
+  await storage.set('user', user)
+  if ( !user.hasOwnProperty('author') )
+    return plog.fail('author must be set')
+
+  if ( !user.hasOwnProperty('email') )
+    return plog.fail('email must be set')
+
+
   const data = {
-    author: commander.author,
-    email: commander.email,
+    author: user.author,
+    email: user.email,
     comment: commander.comment,
     comment_post_ID: cpid,
   }

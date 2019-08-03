@@ -60,4 +60,23 @@ module.exports = {
     }
   },
 
+  report: async(data, cookie = '') => {
+    try {
+      const rs = await request({
+        uri: apis.report,
+        method: 'POST',
+        headers: await makeHeader({
+          cookie,
+          'Referer': apis.host,
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        }),
+        formData: data,
+        timeout: 10000,
+      })
+      return JSON.parse(rs)
+    } catch (e) {
+      throw e
+    }
+  },
+
 }

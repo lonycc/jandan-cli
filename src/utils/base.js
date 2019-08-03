@@ -37,6 +37,7 @@ const apis = {
   tucao: `${host}jandan-tucao.php`,
   comment: `${host}/jandan-comment.php`,
   vote: `${host}/api/comment/vote`,
+  report: `${host}/api/report/comment`,
   host: host,
   fuliba: fuliba,
 }

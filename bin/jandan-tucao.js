@@ -9,21 +9,33 @@ const plog = new ora('post comment...')
 // parse search name
 commander
   .usage('[-e|a|c|m] <...>')
-  .option('-e, --email [email]', 'email', String, 'tucao_test@test.dev')
-  .option('-a, --author [author]', 'nickname', String, 'tucao_test')
+  .option('-e, --email [email]', 'email, set it once', String)
+  .option('-a, --author [author]', 'nickname, set it once', String)
   .option('-c, --content <content>', 'tucao content', String, 'hardcore')
-  .option('-m, --comment_id [comment_id]', 'the comment id', String, '412345')
-  //.option('-p, --comment_post_ID [comment_post_ID]', 'the post id', String, '10086')
+  .option('-m, --comment_id [comment_id]', 'the comment id', parseInt, 10086)
   .parse(process.argv)
 
 ;(async() => {
   plog.start()
+
+  const user = await storage.get('user') || {}
+  if ( commander.email )
+    user.email = commander.email
+  if ( commander.author )
+    user.author = commander.author
+
+  await storage.set('user', user)
+  if ( !user.hasOwnProperty('author') )
+    return plog.fail('author must be set')
+
+  if ( !user.hasOwnProperty('email') )
+    return plog.fail('email must be set')
+
   const data = {
-    author: commander.author,
-    email: commander.email,
+    author: user.author,
+    email: user.email,
     content: commander.content,
     comment_id: commander.comment_id,
-    //comment_post_ID: commander.comment_post_ID,
   }
   const cookie = await storage.getCookie(true)
 

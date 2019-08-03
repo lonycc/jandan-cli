@@ -23,6 +23,7 @@ commander
   .command('comment [category]', 'post comment')
   .command('tucao', 'post tucao')
   .command('vote [id]', 'vote for tucao')
+  .command('report', 'report tucao or comment')
   .command('fuli [id]', 'fetch imgs from fuliba')
   .parse(process.argv)
 
