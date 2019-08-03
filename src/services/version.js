@@ -8,7 +8,7 @@ const getVersion = defaultVersion => {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       resolve(`{ "version": "${defaultVersion}" }`)
-    }, 5000)
+    }, 10000)
 
     request(api).then(res => {
       clearTimeout(timer)

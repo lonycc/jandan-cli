@@ -37,7 +37,7 @@ commander
 
   const rs = await comment.report(data, cookie)
   if ( rs && rs.code === 0 )
-    console.log(chalk.green(`\n举报成功`))
+    console.log(chalk.green('\n举报成功'))
   else
     console.log(chalk.red(`\n举报失败, ${rs.msg}`))
 
