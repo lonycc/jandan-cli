@@ -11,12 +11,17 @@ commander
   .usage('[-e|a|c|m] <...>')
   .option('-e, --email [email]', 'email, set it once', String)
   .option('-a, --author [author]', 'nickname, set it once', String)
-  .option('-c, --content <content>', 'tucao content', String, 'hardcore')
-  .option('-m, --comment_id [comment_id]', 'the comment id', parseInt, 10086)
+  .option('-c, --content <content>', 'tucao content', String)
+  .option('-m, --comment_id [comment_id]', 'the comment id', parseInt)
   .parse(process.argv)
 
 ;(async() => {
   plog.start()
+  if ( !commander.content )
+    return plog.fail('content must be set')
+
+  if ( !commander.comment_id )
+    return plog.fail('comment_id must be set')
 
   const user = await storage.get('user') || {}
   if ( commander.email )

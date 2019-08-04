@@ -37,6 +37,8 @@ commander
   if ( !user.hasOwnProperty('email') )
     return plog.fail('email must be set')
 
+  if ( !commander.comment )
+    return plog.fail('comment must be set')
 
   const data = {
     author: user.author,

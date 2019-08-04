@@ -30,11 +30,11 @@ const noErrorPromisify = makePromisify()
 const apis = {
   index: `${api}get_recent_posts&page=`,
   article: `${api}get_post&id=`,
-  posts: `${api}`,
+  posts: api,
   post: `${host}/t`,
   comments: `${host}/tucao/`,
   hot: `${moyu}/jandan/hot?category=`,
-  tucao: `${host}jandan-tucao.php`,
+  tucao: `${host}/jandan-tucao.php`,
   comment: `${host}/jandan-comment.php`,
   vote: `${host}/api/comment/vote`,
   report: `${host}/api/report/comment`,
