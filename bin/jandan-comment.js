@@ -12,7 +12,7 @@ commander
   .usage('[-e|a|c|p] <...>')
   .option('-e, --email [email]', 'email, set it once', String)
   .option('-a, --author [author]', 'nickname, set it once', String)
-  .option('-c, --comment <comment>', 'comment content', String, 'hardcore')
+  .option('-c, --comment <comment>', 'comment content', String)
   .option('-p, --comment_post_ID [comment_post_ID]', 'the post id', String)
   .parse(process.argv)
 

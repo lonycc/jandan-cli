@@ -10,3 +10,4 @@ bundle
 dist
 jandan_cache
 *.py
+package-lock.json
