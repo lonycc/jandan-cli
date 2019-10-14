@@ -16,7 +16,7 @@ const other = true
 ;(async() => {
   fetchLog.start();
   const category = commander.args[0] || 'treehole'
-  if ( ['qa', 'zhoubian', 'treehole', 'pond', 'zoo', 'app', 'faq'].indexOf(category) < 0 ) return fetchLog.fail('category only support qa/zhoubian/treehole/pond/zoo')
+  if ( ['qa', 'zhoubian', 'treehole', 'pond', 'zoo', 'app', 'faq', 'ooxx', 'pic'].indexOf(category) < 0 ) return fetchLog.fail('category only support qa/zhoubian/treehole/pond/zoo/ooxx/pic')
   const page = commander.args[1] || 0
   fetchLog.stop()
   await renderer.renderPosts(category, page, hot, download, other)

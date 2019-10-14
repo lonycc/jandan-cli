@@ -5,6 +5,10 @@
 
 ## 更新记录
 
+0.1.5
+
+- 翻页逻辑变更.
+
 0.1.4
 
 - 紧急修复吐槽bug.
@@ -121,7 +125,7 @@
 `jandan remove`
 
 
-**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)/动物园(zoo)/应用(app)等列表**
+**9. 查看新开板块如 鱼塘(pond)/周边(zhoubian)/问答(qa)/树洞(treehole)/动物园(zoo)/应用(app)/ooxx/pic等列表**
 
 `jandan test <category> {page} {-d}`
 

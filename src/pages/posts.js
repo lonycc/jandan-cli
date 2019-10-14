@@ -1,5 +1,7 @@
 const cheerio = require('cheerio')
 const { request, apis, makeHeader, storage } = require('../utils')
+const Base64 = require('js-base64').Base64;
+const moment = require('moment');
 
 module.exports = {
   getPostId: async(category = 'treehole') => {
@@ -40,7 +42,9 @@ module.exports = {
 
   getList: async(category = 'treehole', page = 0) => {
     try {
-      const uri = page === 0 ? `${apis.host}/${category}` : `${apis.host}/${category}/page-${page}#comments`
+      const today = moment().format('YYYYMMDD');
+      const hash = Base64.encode(`${today}-${page}`);
+      const uri = page === 0 ? `${apis.host}/${category}` : `${apis.host}/${category}/${hash}#comments`
       const rs = await request({
         uri,
         method: 'GET',
